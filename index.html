@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<style>
+  
+</style>
+
+  
+  <title>CSS Tips</title>
+</head>
+
+<body>
+
+  <!-- Full-width container -->
+  <div class="container mx-auto">
+
+    <!-- Navbar -->
+    <nav class=" text-dark p-4  top-0">
+
+      <!-- Nav menu container (90% width) -->
+      <div class="container mx-auto flex justify-between items-center">
+
+        <!-- Logo and Navigation Links -->
+        <div class="flex items-center space-x-4">
+
+          <!-- Logo -->
+          <div>
+            
+          </div>
+
+          <!-- Navigation Links -->
+          <ul class="flex space-x-4 navigation_link">
+            <!-- Home link with hover border animation -->
+            <li>
+              <a href="">Borders</a>
+            </li>
+            <!-- About link with hover border animation -->
+            <li>
+              <a href="">Box Shadow</a>
+            </li>
+            <!-- Course link with hover border animation -->
+            <li>
+              <a href="">Gradient Color</a>
+            </li>
+            <!-- Gallery link with hover border animation -->
+            <li>
+              <a href="">Much More</a>
+            </li>
+            <!-- Add more navigation links as needed -->
+          </ul>
+
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="mt-8 mb-8">
+      <h1 class="text-4xl font-bold text-center">Beautiful CSS box-shadow examples</h1>
+      <p class="mt-4 text-lg text-center">Design brilliance, one click away. These shadows? Just a click and copy magic. Simplifying design, one pixel at a time!</p>
+
+      <!-- Button with gradient background and border radius -->
+      <div class="flex justify-center mt-8">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 border-none focus:outline-none focus:ring focus:border-blue-300">
+          Learn More
+        </button>
+      </div>
+
+    </div>
+
+
+
+
+   <div class="grid grid-cols-3 grid-rows-4 gap-60 mx-auto" id="boxGrid">
+    
+  </div>
+  <!-- <div id="copied-box-shadow"></div> -->
+
+
+  
+    <!-- ---code is over now-- -->
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const boxGrid = document.getElementById('boxGrid');
+  
+      for (let i = 1; i <= 100; i++) {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item', `grid${i}`);
+        gridItem.innerHTML = `
+          <div class="relative">
+            <div class="flex items-center justify-center h-full mx-auto">
+              <div class="text-1xl center-text">#${i}</div>
+            </div>
+          </div>
+        `;
+        boxGrid.appendChild(gridItem);
+      }
+  
+      boxGrid.addEventListener('click', function (event) {
+        const copyTrigger = event.target.closest('.grid-item');
+        if (copyTrigger) {
+          const clickedClass = copyTrigger.classList[1];
+          const computedStyle = getComputedStyle(copyTrigger);
+          const boxShadowValue = computedStyle.boxShadow;
+  
+          const textarea = document.createElement('textarea');
+          textarea.value = `  box-shadow: ${boxShadowValue};`;
+          document.body.appendChild(textarea);
+  
+          textarea.select();
+          textarea.setSelectionRange(0, 99999); /* For mobile devices */
+  
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+  
+          // Create the message element
+          const copiedBoxShadow = document.createElement('div');
+          copiedBoxShadow.textContent = 'Copied!';
+          copiedBoxShadow.classList.add('copied-box-shadow');
+  
+          // Position the message at the top of the box
+          copiedBoxShadow.style.top = '-60px'; // Adjust the value as needed
+          copiedBoxShadow.style.left = '50%';
+          copiedBoxShadow.style.transform = 'translateX(-50%)';
+          copyTrigger.appendChild(copiedBoxShadow);
+  
+          setTimeout(() => {
+            // Remove the message after a delay
+            copyTrigger.removeChild(copiedBoxShadow);
+          }, 500); // Display for 2 seconds (adjust as needed)
+        }
+      });
+    });
+  </script>
+  
+  
+
+ 
+</body>
+
+</html>
